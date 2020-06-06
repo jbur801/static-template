@@ -1,153 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
-<title>Assignment 3 Base code Adapted from W3.CSS Template</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link href='https://fonts.googleapis.com/css?family=RobotoDraft' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><style>
-html,body,h1,h2,h3,h4,h5 {font-family: "RobotoDraft", "Roboto", sans-serif}
-.w3-bar-block .w3-bar-item {padding: 16px}
+  <title>Assignment 3 Base code Adapted from W3.CSS Template</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <link
+    href="https://fonts.googleapis.com/css?family=RobotoDraft"
+    rel="stylesheet"
+    type="text/css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  /><style>
+    html,
+    body,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: "RobotoDraft", "Roboto", sans-serif;
+    }
+	h1 {
+	  font-family: "RobotoDraft", "Roboto", sans-serif;
+	  font-size: 60px;
+	}
+    .w3-bar-block .w3-bar-item {
+      padding: 16px;
+    }
 
-.chartWithOverlay
-{
-    position: relative;
-}
 
-.donutDiv
-{
-    width: 450px;
-    height: 400px;
-}
 
-.centerLabel
-{
-    position: absolute;
-    left: 125px;
-    top: 100px;
-    width: 200px;
-    line-height: 200px;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 20px;
-    color: black;
-}
-</style>
-<head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    .chartWithOverlay {
+      position: relative;
+    }
+
+    .donutDiv {
+      width: 450px;
+      height: 400px;
+    }
+
+    .centerLabel {
+      position: absolute;
+      left: 125px;
+      top: 100px;
+      width: 200px;
+      line-height: 200px;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+      color: black;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    a {
+      text-decoration: none;
+    }
+	
+    .header,
+    .assignment-info, div.add {
+      padding: 12px 6px 12px 6px;
+      border-style: none solid solid;
+      border-width: 1px;
+      border-color: #dcdcdc;
+    }
+    .header {
+      background-color: #dcdcdc;
+	  display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .assignment-list {
+      margin-bottom: 20px;
+    }
+    .due-date {
+      font-size: 12px;
+    }
+    .assignment-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+	
+    a:not(.header-link):hover{
+      text-decoration: underline;
+    }
+    .assignment-info:hover {
+      background-color: #ededed;
+    }
+	
+	a.add:hover {
+	  text-decoration: none;
+	}
+	
+	div.add {
+		display: flex;
+		justify-content: center;
+		background-color: #ededed;
+	}
+	
+	div.add:hover{
+		background-color: #d3d3d3;
+  }
+  </style>
+  <head>
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
     <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
+      google.charts.load("current", { packages: ["corechart"] });
       google.charts.setOnLoadCallback(drawChart);
       function drawChart() {
-	  
-		// MAIN CHART BODYS ---------------------------------------
-		//CHART 1
-		//data
-	    var dataTable = new google.visualization.DataTable();
-		dataTable.addColumn('string', 'Task');
-        dataTable.addColumn('number', 'Hours');
-		dataTable.addColumn({type: 'string', role: 'tooltip'});
-        dataTable.addRows([['Lynette',  5,'Task 1'],
-          ['Josh',  7,'Task 2'],
-          ['Daniel',  2,'Task 3'],
-          ['Pranay',  2,'Task 4'],
-          ['Not Done',  7,'Task 5']]);
-		//settings
+        // MAIN CHART BODYS ---------------------------------------
+        //CHART 1
+        //data
+        var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn("string", "Task");
+        dataTable.addColumn("number", "Hours");
+        dataTable.addColumn({ type: "string", role: "tooltip" });
+        dataTable.addRows([
+          ["3 Hours", 3, "5 Hours"],
+          ["2.5 Hours", 2.5, "7 Hours"],
+          ["2 Hours", 2, "2 Hours"],
+          ["4 Hours", 4, "2 Hours"],
+          ["11 Hours", 11, "7 Hours"]
+        ]);
+        //settings
         var options = {
-          title: 'Softeng 350 A2',
+          title: "Softeng 350 A2",
           pieHole: 0.4,
-		  slices: [{}, {}, {}, {},{color: 'grey'}],
-		  pieSliceText: 'value', 
-		  backgrountColor: 'transparent',
-		  legend: {textStyle: {fontName: "Arial Narrow", fontSize: 10}, position: 'bottom'},
-        };
-		
-		
-		//CHART 2
-		//data
-		var dataTable2 = new google.visualization.DataTable();
-		dataTable2.addColumn('string', 'Task');
-        dataTable2.addColumn('number', 'Hours');
-		dataTable2.addColumn({type: 'string', role: 'tooltip'});
-        dataTable2.addRows([['Lynette',  10,'Task 1'],
-          ['Josh',  4,'Task 2'],
-          ['Daniel',  6,'Task 3'],
-          ['Not Done',  2,'Task 4'],
-          ['Not Done',  7,'Task 5']]);
-		//settings
-		 var options2 = {
-          title: 'Softeng 351 A4',
-          pieHole: 0.4,
-		  legend: {position: 'bottom'},
-		  slices: [{}, {}, {}, {color:'grey'},{color: 'grey'}],
-		  pieSliceText: 'value',
-        };
-				//INNER CHARTS (TIMING INFO)------------------------------------------------------------------------------------
-		//CHART 1
-		//data
-		  var data = google.visualization.arrayToDataTable([
-		  ['time','days'],
-		  ['elapsed', 12],
-		  ['remaining',2]]
-		  );
-		//settings
-		 var innerOptions = {
-            legend: {position: 'none'},
-			slices: [{color:'red'}, {color:'green'}],
-			backgroundColor: { fill:'transparent' },
-			pieSliceText: 'none',
+          slices: [{color: "blue"}, {color: "blue"}, {color: "blue"}, { color: "blue"}, { color: "grey" }],
+          pieSliceText: "label",
+          backgroundColor: { fill: "transparent" },
+          legend: {
+            textStyle: { fontName: "Arial Narrow", fontSize: 10 },
+            position: "bottom"
+          }
         };
 
-		//draw calls
-		//main1
-        var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+        //CHART 2
+        //data
+        var dataTable2 = new google.visualization.DataTable();
+        dataTable2.addColumn("string", "Task");
+        dataTable2.addColumn("number", "Hours");
+        dataTable2.addColumn({ type: "string", role: "tooltip" });
+        dataTable2.addRows([
+          ["Lynette", 10, "Task 1"],
+          ["Josh", 4, "Task 2"],
+          ["Daniel", 6, "Task 3"],
+          ["Pranay", 2, "Task 4"],
+          ["Not Done", 7, "Task 5"]
+        ]);
+        //settings
+        var options2 = {
+          title: "Softeng 351 A4",
+          pieHole: 0.4,
+          legend: { position: "top", maxLines: 2},
+          backgroundColor: { fill: "transparent" },
+          slices: [{}, {}, {}, { }, { color: "grey" }],
+          pieSliceText: "value"
+        };
+        //INNER CHARTS (TIMING INFO)------------------------------------------------------------------------------------
+        //CHART 1
+        //data
+        var data = google.visualization.arrayToDataTable([
+          ["time", "days"],
+          ["elapsed", 12],
+          ["remaining", 2]
+        ]);
+        //settings
+        var innerOptions = {
+          legend: { position: "none" },
+          slices: [{ color: "" }, { color: "green" }],
+          backgroundColor: { fill: "transparent" },
+          pieSliceText: "none"
+        };
+
+        //draw calls
+        //main1
+        var chart = new google.visualization.PieChart(
+          document.getElementById("donutchart")
+        );
         chart.draw(dataTable, options);
-		//inner1
-		var innerChart = new google.visualization.PieChart(document.getElementById('innerChart'));
-        innerChart.draw(data, innerOptions);
-		//main2
-		var chart2 = new google.visualization.PieChart(document.getElementById('donutchart2'));
+        //inner1
+        var innerChart = new google.visualization.PieChart(
+          document.getElementById("innerChart")
+        );
+        //innerChart.draw(data, innerOptions);
+        //main2
+        var chart2 = new google.visualization.PieChart(
+          document.getElementById("donutchart2")
+        );
         chart2.draw(dataTable2, options2);
-		//document.querySelector('chart > div > div:nth-child(1) > div > svg > g:nth-child(3) > text').setAttribute("x", 100);
+        //document.querySelector('chart > div > div:nth-child(1) > div > svg > g:nth-child(3) > text').setAttribute("x", 100);
       }
     </script>
   </head>
-<body>
+  <body>
+    
+   <!-- Side Navigation -->
+   <nav
+   class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-left w3-card"
+   style="z-index:3;width:320px;"
+   id="mySidebar"
+ >
+   <a
+     href="javascript:void(0)"
+     class="w3-bar-item w3-button w3-border-bottom w3-large"
+     ><i class="fa fa-edit"></i> &nbsp;
+     <span
+       ><img
+         src="profpic.png"
+         style="width:30%; float:left"
+         alt="profile picture"
+     ></span>
+     <br />
+     STUDENT NAME <br />
+     UPI</a
+   >
+   <a
+     href="javascript:void(0)"
+     onclick="w3_close()"
+     title="Close Sidemenu"
+     class="w3-bar-item w3-button w3-hide-large w3-large"
+     >Close <i class="fa fa-remove"></i
+   ></a>
+   <a
+     href="javascript:void(0)"
+     class="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3-left-align"
+     onclick="document.getElementById('id01').style.display='block'"
+     >Share File <i class="w3-padding fa fa-pencil"></i
+   ></a>
+ 
+ 
+ <!--drop down for all assignments-->
+ <a
+ id="myBtn"
+     onclick="myFunc('assignments')"
+     href="javascript:void(0)"
+     class="w3-bar-item w3-button">
+ <i class="fa fa-inbox w3-margin-right"></i>Active Assignments<i
+       class="fa fa-caret-down w3-margin-left"
+     ></i>
+ </a>
+ <div id="assignments" class="w3-hide w3-animate-left">
+     <a
+       href="javascript:void(0)"
+       class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey"
+       onclick="doShare('File1');w3_close();"
+     >
+       <div class="w3-container">
+         <h6>SOFTENG 350 A3</h6>
+         <p>Due: June 8</p>
+       </div>
+     </a>
+     <a
+       href="javascript:void(0)"
+       class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey"
+       onclick="doShare('File2');w3_close();"
+     >
+       <div class="w3-container">
+         <h6>SOFTENG 351 A4</h6>
+         <p>Due: June 11</p>
+       </div>
+     </a>
+   </div>
+   
+ 
+ <!--drop down for courses-->
+ <a id="myBtn"
+     onclick="myFunc('courses')"
+     href="javascript:void(0)"
+     class="w3-bar-item w3-button">
+ <i class="fa fa-inbox w3-margin-right"></i>Courses<i
+       class="fa fa-caret-down w3-margin-left"
+     ></i>
+ </a>
+ <div id="courses" class="w3-hide w3-animate-left">
+     <a
+       href="javascript:void(0)"
+       class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey"
+       onclick="doShare('File1');w3_close();"
+     >
+       <div class="w3-container">
+         <h6>SOFTENG 351</h6>
+         <p>Fundamentals of Database systems</p>
+       </div>
+     </a>
+     <a
+       href="javascript:void(0)"
+       class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey"
+       onclick="doShare('File2');w3_close();"
+     >
+       <div class="w3-container">
+         <h6>SOFTENG 350</h6>
+         <p>Human Computer Interaction</p>
+       </div>
+     </a>
+     <a
+       href="javascript:void(0)"
+       class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey"
+       onclick="doShare('File3');w3_close();"
+     >
+       <div class="w3-container">
+         <h6>ENGGEN 303</h6>
+         <p>Managing Projects and Innovation</p>
+       </div>
+     </a>
+   </div>
+ 
 
-<!-- Side Navigation -->
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-animate-left w3-card" style="z-index:3;width:320px;" id="mySidebar">
-  
-  <a href="javascript:void(0)" onclick="w3_close()" title="Close Sidemenu" 
-  class="w3-bar-item w3-button w3-hide-large w3-large">Close <i class="fa fa-remove"></i></a>
-  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-dark-grey w3-button w3-hover-black w3-left-align" onclick="document.getElementById('id01').style.display='block'">Share File <i class="w3-padding fa fa-pencil"></i></a>
-  <a id="myBtn" onclick="myFunc('Demo1')" href="javascript:void(0)" class="w3-bar-item w3-button"><i class="fa fa-inbox w3-margin-right"></i>Files (3)<i class="fa fa-caret-down w3-margin-left"></i></a>
-  <div id="Demo1" class="w3-hide w3-animate-left">
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="doShare('File1');w3_close();" id="firstTab">
-      <div class="w3-container">
-        <img class="w3-round w3-margin-right" src="./fileIcon3.png" style="width:15%;"><span class="w3-opacity w3-large">File 1</span>
-        <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</h6>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-      </div>
-    </a>
-     <a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="doShare('File2');w3_close();">
-      <div class="w3-container">
-        <img class="w3-round w3-margin-right" src="./fileIcon5.png" style="width:15%;"><span class="w3-opacity w3-large">File 2</span>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-      </div>
-    </a>
-    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-border-bottom test w3-hover-light-grey" onclick="doShare('File3');w3_close();">
-      <div class="w3-container">
-        <img class="w3-round w3-margin-right" src="./fileIcon2.png" style="width:15%;"><span class="w3-opacity w3-large">File 3</span>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-      </div>
-    </a>
-  </div>
-  <a href="#" class="w3-bar-item w3-button"><i class="fa fa-paper-plane w3-margin-right"></i>Shared Files</a>
-  <a href="#" class="w3-bar-item w3-button"><i class="fa fa-hourglass-end w3-margin-right"></i>Draft Files</a>
-  <a href="#" class="w3-bar-item w3-button"><i class="fa fa-trash w3-margin-right"></i>Trash</a>
-</nav>
+ </nav>
 
-<!-- Modal that pops up when you click on "Share File" -->
+<!-- New Share-File Pop-Up for Assignment 3 -->
 <div id="id01" class="w3-modal" style="z-index:4">
   <div class="w3-modal-content w3-animate-zoom">
     <div class="w3-container w3-padding w3-red">
@@ -156,120 +325,410 @@ html,body,h1,h2,h3,h4,h5 {font-family: "RobotoDraft", "Roboto", sans-serif}
       <h2>Share File</h2>
     </div>
     <div class="w3-panel">
-      <label>To</label>
-      <input class="w3-input w3-border w3-margin-bottom" type="text">
-      <label>From</label>
-      <input class="w3-input w3-border w3-margin-bottom" type="text">
-      <label>File</label>
-      <input class="w3-input w3-border w3-margin-bottom" type="text">
+      <label><strong>File Location:</strong></label>
+      <input class="w3-margin-bottom" type="text" style="width: 60%;" placeholder="Courses/SOFTENG_350/Assignment_3">
+      <div style="float: right;" class="w3-margin-bottom">
+        <a class="w3-button w3-grey  w3-small" style="float: right;">Change Location</a>
+      </div>
+      <div>
+        <a class="w3-button w3-grey w3-margin-bottom w3-small" style="margin-left: 50px;"><i class="fa fa-file"></i> Add File</a><a class="w3-button w3-grey w3-margin-bottom w3-small" style="margin-left: 200px; margin-right: 200px;"><i class="fa fa-folder"></i> Add Folder</a><a class="w3-button w3-grey w3-margin-bottom w3-small" onclick="showPeopleScreen()">
+          <i class="fa fa-male"></i> Add People
+        </a>
+     </div>
+      <label for=""><strong>Add a Message:</strong></label>
       <input class="w3-input w3-border w3-margin-bottom" style="height:150px" placeholder="Message">
+      <div>
+        <a class="w3-button w3-grey w3-small" onclick="advanceSettings()"><i class="fa fa-gear fa-spin"></i> Advance Settings</a>
+      </div>
       <div class="w3-section">
         <a class="w3-button w3-red" onclick="document.getElementById('id01').style.display='none'">Cancel  <i class="fa fa-remove"></i></a>
-        <a class="w3-button w3-light-grey w3-right" onclick="document.getElementById('id01').style.display='none'">Share  <i class="fa fa-paper-plane"></i></a> 
+        <a class="w3-button w3-light-grey w3-right" onclick="showSucessMessage()">Share  <i class="fa fa-paper-plane"></i></a> 
       </div>    
     </div>
   </div>
 </div>
 
+<!-- Advance Settings Pop-Up for Assignment 3 -->
+<div id="id02" class="w3-modal" style="z-index:4">
+  <div class="w3-modal-content w3-animate-zoom">
+    <div class="w3-container w3-padding w3-red">
+       <span onclick="showShareScreen()"
+       class="w3-button w3-red w3-right w3-xxlarge"><i class="fa fa-remove"></i></span>
+      <h2>Advance Settings <i class="fa fa-gear fa-spin"></i><i></i> </h2>
+    </div>
+    <div class="w3-panel">
+      <label for="" ><strong><u>Participants Have:</u></strong></label>
+      <div style="float: right;">
+        <a class="w3-button w3-grey w3-small" style="float: right;" title="Click to Copy Link" id="copyButton" onclick="changeTitle()"><i class="fa fa-paperclip"></i>Copy Link</a>
+      </div>
+      <p></p>
+      
+      
+    <div>
+        <input type="checkbox" id="Settings1" name="Viewing" value="View">
+        <label for="Viewing"> Viewing Privilege</label><br>
+        <input type="checkbox" id="Settings2" name="Editing" value="Edit">
+        <label for="Editing"> Editing Privilege</label><br>
+        <input type="checkbox" id="Settings3" name="Commenting" value="Comment">
+        <label for="Commenting"> Commenting Privilege</label><br><br>
+      </div> 
+        <div class="w3-section">
+          <a class="w3-button w3-red" onclick="showShareScreen()">Cancel  <i class="fa fa-remove"></i></a>
+          <a class="w3-button w3-light-grey w3-right" onclick="showShareScreen()">Done</i></a> 
+        </div> 
+      
+    </div>
+  </div>
+</div>
+
+<!-- Add users Pop-Up for Assignment 3 -->
+<div id="id03" class="w3-modal" style="z-index:4">
+  <div class="w3-modal-content w3-animate-zoom">
+    <div class="w3-container w3-padding w3-red">
+       <span onclick="showShareScreen2()"
+       class="w3-button w3-red w3-right w3-xxlarge"><i class="fa fa-remove"></i></span>
+      <h2>Add Users <i class="fa fa-male"></i><i></i> </h2>
+    </div>
+    <div class="w3-panel">
+      <input type="text" placeholder="Add people or groups" style="width: 90%">
+      <div style="float: right;">
+        <a class="w3-button w3-grey w3-small" style="float: right;" title="Click to Add"><i class="fa fa-plus"></i></a>
+      </div>
+        <div>
+          <img src="currentUsers.PNG" alt="Current Users with shared file/folder" style="max-width: 100%; max-height: 100%;">
+        </div>
+    <div>
+        <div class="w3-section">
+          <a class="w3-button w3-red" onclick="showShareScreen2()">Cancel  <i class="fa fa-remove"></i></a>
+          <a class="w3-button w3-light-grey w3-right" onclick="showShareScreen2()">Done</i></a> 
+        </div> 
+    </div>   
+    </div>
+  </div>
+</div>
+
+
 <!-- Overlay effect when opening the side navigation on small screens -->
-<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="Close Sidemenu" id="myOverlay"></div>
+<div
+  class="w3-overlay w3-hide-large w3-animate-opacity"
+  onclick="w3_close()"
+  style="cursor:pointer"
+  title="Close Sidemenu"
+  id="myOverlay"
+></div>
 
-<!-- Page content -->
-<div class="w3-main" style="margin-left:320px;">
-<i class="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top" onclick="w3_open()"></i>
-<a href="javascript:void(0)" class="w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right" onclick="document.getElementById('id01').style.display='block'"><i class="fa fa-pencil"></i></a>
+    <!-- Page content -->
+    <div class="w3-main" style="margin-left:320px;">
+      <i
+        class="fa fa-bars w3-button w3-white w3-hide-large w3-xlarge w3-margin-left w3-margin-top"
+        onclick="w3_open()"
+      ></i>
+      <a
+        href="javascript:void(0)"
+        class="w3-hide-large w3-red w3-button w3-right w3-margin-top w3-margin-right"
+        onclick="document.getElementById('id01').style.display='block'"
+        ><i class="fa fa-pencil"></i
+      ></a>
 
-<div id="File1" class="w3-container file">
-  <h1> Ongoing Assignments</h1>
-	
-	
-	<table class="Charts">
-    <tr>
-        <td class="chartWithOverlay">
+      <div id="File1" class="w3-container file" >
+		<div style = "text-align: center">
+			<h1> UniFileSharer </h1>
+		</div>
+		<div id = tasks style="background-color: #B6B6B6; position: relative;">
+			<div style = "text-align: center">
+			<h2> Ongoing Assignments </h2>
+		</div>
+			<table class="Charts" >
+			  <tr>
+				<td class="chartWithOverlay">
+				  <span
+            ><img src = "./graph 2.png"></span>
+				  
+				</td>
+				<td class="chartWithOverlay">
+				  <div id="donutchart2" class="donutDiv"></div>
+				  <div class="centerLabel">6 days</div>
+				</td>
+			  </tr>
+			</table>
 			
-            <div id="donutchart" class= "donutDiv"></div>
-			<div id = "innerChart" class = "centerLabel">  2 days </div>
-        </td>
-        <td class="chartWithOverlay">
-            <div id="donutchart2" class= "donutDiv"></div>
-		<div class = "centerLabel">  6 days </div>
-        </td>
-    </tr>
-</table>
-  </html>
-</div>
+			<div style = "position: absolute; left: 50%; bottom: 1%">
+				<input type="radio" name="x" value="0" checked> 
+				<input type="radio" name="x" value="1" checked>
+			</div>
+		</div>
 
-<div id="File2" class="w3-container file">
-  <br>
-  <img class="w3-round w3-animate-top" src="./fileIcon5.png" style="width:20%;">
-  <h5 class="w3-opacity">File 2</h5>
-  <h4><i class="fa fa-clock-o"></i> File 2, Sep 25, 2015.</h4>
-  <a class="w3-button w3-light-grey">Share<i class="w3-margin-left fa fa-mail-reply"></i></a>
-  <a class="w3-button w3-light-grey">Delete<i class="w3-margin-left fa fa-arrow-right"></i></a>
-  <hr>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <!-- list of assignments -->
+          <ul>
+            <li>
+              <div class="assignment-list">
+                <div class="header">
+                  <div class ='contain-left'>
+                    <div class='title'>
+                      <a
+                        class="header-link"
+                        aria-expanded="true"
+                        id="ass1"
+                        href="#"
+                        onclick="toggle('f-list1','ass1')"
+                        >ENGGEN 303 Assignment 1</a>
+                    </div>
+                    <div class="due-date"><b>Due</b> Jun 2 at 8am</div>
+                  </div>
+                  <div class="members">10 members</div>
+                </div>
+                <div>
+                <ul id="f-list1">
+                  <li>
+                  <div class="assignment-info">
+                    <div class="title"><a href="#">File 1</a></div>
+                  </div>
+                  </li>
+                  <li>
+                  <div class="assignment-info">
+                    <div class="contain-left">
+                    <div class="title"><a href="#">File 2</a></div>
+                    </div>
+                  </div>
+                  </li>
+                  <li>
+                  <div class="assignment-info">
+                    <div class="contain-left">
+                    <div class="title"><a href="#">File 3</a></div>
+                    </div>
+                  </div>
+                  </li>
+                  <li>
+                  <a class='add' href='#' onclick="document.getElementById('id01').style.display='block'"><div class='add'><b>+</b></div></a>
+                  </li>
+                </ul>
+                </div>
+              </div>
+            </li>
+      
+            <li>
+              <div class="assignment-list">
+                <div class="header">
+                  <div class ='contain-left'>
+                    <div class='title'>
+                      <a
+                        class="header-link"
+                        aria-expanded="true"
+                        id="ass2"
+                        href="#"
+                        onclick="toggle('f-list2','ass2')"
+                        >SOFTENG 350 Assignment 1</a>
+                    </div>
+                    <div class="due-date"><b>Due</b> Jun 10 at 11:59pm</div>
+                  </div>
+                  <div class="members">4 members</div>
+                </div>
+                <div>
+                <ul id="f-list2">
+                  <li>
+                  <div class="assignment-info">
+                    <div class="title"><a href="#">File 1</a></div>
+                  </div>
+                  </li>
+                  <li>
+                  <div class="assignment-info">
+                    <div class="contain-left">
+                    <div class="title"><a href="#">File 2</a></div> 
+                    </div>
+                  </div>
+                  </li>
+                  <li>
+                    <a class='add' href='#' onclick="document.getElementById('id01').style.display='block'"><div class='add'><b>+</b></div></a>
+                  </li>
+                </ul>
+                </div>
+              </div>
+            </li>
+            </ul>
+      </div>
 
-</div>
+      <div id="File2" class="w3-container file">
+        <h1>Ongoing Assignments</h1>
 
-<div id="File3" class="w3-container file">
-  <br>
-  <img class="w3-round w3-animate-top" src="./fileIcon2.png" style="width:20%;">
-  <h5 class="w3-opacity">File 3</h5>
-  <h4><i class="fa fa-clock-o"></i> File 3, Sep 23, 2015.</h4>
-  <a class="w3-button w3-light-grey">Share<i class="w3-margin-left fa fa-mail-reply"></i></a>
-  <a class="w3-button w3-light-grey">Delete<i class="w3-margin-left fa fa-arrow-right"></i></a>
-  <hr>
- 
-</div>
-     
-</div>
+        <table class="Charts" style="background-color: grey">
+          <tr>
+            <td class="chartWithOverlay">
+              <div id="donutchart" class="donutDiv"></div>
+              <div id="innerChart" class="centerLabel">2 days</div>
+            </td>
+            <td class="chartWithOverlay">
+              <div id="donutchart2" class="donutDiv"></div>
+              <div class="centerLabel">6 days</div>
+            </td>
+          </tr>
+        </table>
+<input type="radio" name="x" value="" checked > 
+<input type="radio" name="x" value="" >
+        <!-- list of assignments -->
+        <ul>
+          <li>
+            <div class="assignment-list">
+              <div class="header">
+                <a
+                  class="header-link"
+                  aria-expanded="true"
+                  id="ass1"
+                  href="#"
+                  onclick="toggle('f-list1','ass1')"
+                  >Assignments</a
+                >
+              </div>
+              <div>
+                <ul id="f-list1">
+                  <li>
+                    <div class="assignment-info">
+                      <div class="contain-left">
+                        <div class="title"><a href="#">Assignment 1</a></div>
+                        <div class="due-date"><b>Due</b> Jun 2 at 8am</div>
+                      </div>
+                      <div class="members">4 members</div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="assignment-info">
+                      <div class="contain-left">
+                        <div class="title"><a href="#">Assignment 2</a></div>
+                        <div class="due-date"><b>Due</b> Jun 10 at 11:59pm</div>
+                      </div>
+                      <div class="members">10 members</div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="assignment-info">
+                      <div class="contain-left">
+                        <div class="title"><a href="#">Assignment 3</a></div>
+                        <div class="due-date"><b>Due</b> Jun 15 at 5pm</div>
+                      </div>
+                      <div class="members">2 members</div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </li>
 
+          <li>
+            <div class="assignment-list">
+              <div class="header">
+                <a
+                  class="header-link"
+                  aria-expanded="true"
+                  id="ass2"
+                  href="#"
+                  onclick="toggle('f-list2','ass2')"
+                  >Past Assignments</a
+                >
+              </div>
+              <div>
+                <ul id="f-list2">
+                  <li></li>
+                </ul>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div id="File3" class="w3-container file">
+		<input type="radio" name="x" value="" checked > 
+		<input type="radio" name="x" value="" >
+      </div>
+    </div>
+
+    <script>
+      var openInbox = document.getElementById("myBtn");
+      openInbox.click();
+
+      function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+      }
+
+      function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+      }
+
+      function myFunc(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+          x.previousElementSibling.className += " w3-red";
+        } else {
+          x.className = x.className.replace(" w3-show", "");
+          x.previousElementSibling.className = x.previousElementSibling.className.replace(
+            " w3-red",
+            ""
+          );
+        }
+      }
+
+      doShare("File1");
+      function doShare(fileName) {
+        var i;
+        var x = document.getElementsByClassName("file");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        x = document.getElementsByClassName("test");
+        for (i = 0; i < x.length; i++) {
+          x[i].className = x[i].className.replace(" w3-light-grey", "");
+        }
+        document.getElementById(fileName).style.display = "block";
+        event.currentTarget.className += " w3-light-grey";
+      }
+
+      // source: https://www.w3.org/WAI/GL/wiki/Using_aria-expanded_to_indicate_the_state_of_a_collapsible_element
+      function toggle(id, id2) {
+        var n = document.getElementById(id);
+        if (n.style.display != "none") {
+          n.style.display = "none";
+          document.getElementById(id2).setAttribute("aria-expanded", "false");
+        } else {
+          n.style.display = "";
+          document.getElementById(id2).setAttribute("aria-expanded", "true");
+        }
+      }
+    </script>
+
+    <script>
+      var openTab = document.getElementById("firstTab");
+      openTab.click();
+    </script>
 <script>
-var openInbox = document.getElementById("myBtn");
-openInbox.click();
-
-function w3_open() {
-  document.getElementById("mySidebar").style.display = "block";
-  document.getElementById("myOverlay").style.display = "block";
-}
-
-function w3_close() {
-  document.getElementById("mySidebar").style.display = "none";
-  document.getElementById("myOverlay").style.display = "none";
-}
-
-function myFunc(id) {
-  var x = document.getElementById(id);
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show"; 
-    x.previousElementSibling.className += " w3-red";
-  } else { 
-    x.className = x.className.replace(" w3-show", "");
-    x.previousElementSibling.className = 
-    x.previousElementSibling.className.replace(" w3-red", "");
+  function showSucessMessage() {
+    document.getElementById('id01').style.display='none';
+    alert("The file/folder has been sent successfully!");
   }
-}
 
-doShare("File1")
-function doShare(fileName) {
-  var i;
-  var x = document.getElementsByClassName("file");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
+  function advanceSettings() {
+    document.getElementById('id01').style.display='none';
+    document.getElementById('id02').style.display='block';
   }
-  x = document.getElementsByClassName("test");
-  for (i = 0; i < x.length; i++) {
-    x[i].className = x[i].className.replace(" w3-light-grey", "");
+
+  function showShareScreen() {
+    document.getElementById('id02').style.display='none';
+    document.getElementById('id01').style.display='block';
   }
-  document.getElementById(fileName).style.display = "block";
-  event.currentTarget.className += " w3-light-grey";
-}
+
+  function showShareScreen2() {
+    document.getElementById('id03').style.display='none';
+    document.getElementById('id01').style.display='block';
+  }
+
+  function showPeopleScreen() {
+    document.getElementById('id01').style.display='none';
+    document.getElementById('id03').style.display='block';
+  }
+
+  function changeTitle() {
+    document.getElementById("copyButton").title="Link Copied!"
+  }
 </script>
-
-<script>
-var openTab = document.getElementById("firstTab");
-openTab.click();
-</script>
-
-</body>
-</html> 
+  </body>
+</html>
